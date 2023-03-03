@@ -1,0 +1,12 @@
+{
+  "name": "krypto-luck",
+  "version": "1.0.0",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "ethcall": "^4.8.13",
+    "ethers": "^5.7.2",
+    "fs-extra": "^11.1.0",
+    "luxon": "^3.2.1",
+    "winston": "^3.8.2"
+  }
+}

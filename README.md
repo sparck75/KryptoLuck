@@ -1,0 +1,2 @@
+# KryptoLuck
+ Are you lucky

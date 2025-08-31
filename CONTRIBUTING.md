@@ -36,7 +36,7 @@ KryptoLuck is an educational project that demonstrates:
 
 3. **Set up environment variables** (for testing online mode)
    ```bash
-   cp .exemple_env .env
+   cp .example_env .env
    # Edit .env and add your Infura API key
    ```
 

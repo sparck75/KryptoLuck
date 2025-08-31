@@ -45,7 +45,7 @@ The Ethereum address space contains 2^160 possible addresses (approximately 1.46
 
 3. **Set up environment variables** (for online mode)
    ```bash
-   cp .exemple_env .env
+   cp .example_env .env
    ```
    
    Edit `.env` and add your Infura API key:
@@ -98,7 +98,7 @@ KryptoLuck/
 ├── luck-online.mjs         # Main script for online mode
 ├── luck-offline.mjs        # Main script for offline mode
 ├── RichEtherAddress.json   # List of wealthy Ethereum addresses
-├── .exemple_env            # Environment variables template
+├── .example_env            # Environment variables template
 └── README.md               # This file
 ```
 
@@ -218,6 +218,26 @@ This project is licensed under the GNU General Public License v3.0 - see the [LI
 - [Infura](https://infura.io/) - Ethereum node infrastructure
 - [ethcall](https://github.com/Destiner/ethcall) - Multicall functionality
 - The Ethereum community for creating secure cryptographic systems
+
+## ❓ Frequently Asked Questions
+
+### Q: Will I actually find any funds?
+**A: No.** The probability is so astronomically low that it's effectively impossible. You're more likely to be struck by lightning while winning the lottery on the same day.
+
+### Q: How long would it take to find a funded wallet?
+**A: Longer than the age of the universe.** Even with quantum computers, the time required would be impractical.
+
+### Q: Is this legal?
+**A: Yes, generating random wallets is legal.** However, if you were to find a funded wallet (which won't happen), using someone else's funds would be theft.
+
+### Q: What's the point of this project?
+**A: Education.** This demonstrates why cryptocurrency is secure and why brute force attacks don't work.
+
+### Q: Can I modify this to be more effective?
+**A: No amount of optimization will make this practically successful.** The fundamental mathematics of cryptography prevent it.
+
+### Q: Why does it say "JACKPOT!" in the code?
+**A: It's aspirational messaging.** If the impossible happened, you'd want to know immediately!
 
 ---
 

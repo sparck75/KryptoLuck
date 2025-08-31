@@ -1,0 +1,118 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for KryptoLuck
+title: "[Feature]: "
+labels: ["enhancement", "needs-discussion"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please describe your idea below and help us understand how it would improve the educational value of KryptoLuck.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm you have completed the following steps
+      options:
+        - label: I have read the [README.md](../README.md) and understand the project's educational purpose
+          required: true
+        - label: I have searched existing issues to ensure this feature hasn't been requested
+          required: true
+        - label: I understand this project is for educational demonstration of cryptographic impossibility
+          required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Feature Category
+      description: What type of feature are you requesting?
+      options:
+        - Performance optimization
+        - Educational content/examples
+        - User interface improvement
+        - Code quality/architecture
+        - Documentation enhancement
+        - Testing/validation
+        - Security/safety improvement
+        - Mathematical accuracy
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? What educational gap does it fill?
+      placeholder: Describe the current limitation or missing educational component
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you'd like to see implemented
+      placeholder: |
+        A clear and concise description of what you want to happen.
+        
+        Example:
+        - Add a visualization of key space size
+        - Implement better progress indicators
+        - Add mathematical explanations for probability calculations
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Describe any alternative solutions or features you've considered
+      placeholder: What other approaches could solve this problem?
+
+  - type: textarea
+    id: educational_value
+    attributes:
+      label: Educational Value
+      description: How would this feature improve understanding of cryptographic concepts?
+      placeholder: |
+        Explain how this feature would help users better understand:
+        - The mathematical impossibility of brute force attacks
+        - Cryptographic key generation
+        - Probability and statistics
+        - Security concepts
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: implementation
+    attributes:
+      label: Implementation Considerations
+      description: What should be considered when implementing this feature?
+      options:
+        - label: Should maintain educational focus over performance
+        - label: Requires mathematical accuracy and verification
+        - label: Should include clear documentation/examples
+        - label: Must not mislead users about real-world viability
+        - label: Should be accessible to beginners
+        - label: Requires testing and validation
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or examples about the feature request
+      placeholder: Mock-ups, references to similar features, or detailed specifications
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority Level
+      description: How important is this feature for the educational goals?
+      options:
+        - Critical for educational understanding
+        - High - significantly improves learning
+        - Medium - nice to have enhancement
+        - Low - minor improvement
+    validations:
+      required: true

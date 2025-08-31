@@ -1,0 +1,96 @@
+name: 🐛 Bug Report
+description: Report a bug in KryptoLuck
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for taking the time to report a bug! Please fill out the form below to help us understand and fix the issue.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm you have completed the following steps
+      options:
+        - label: I have read the [README.md](../README.md) and [CONTRIBUTING.md](../CONTRIBUTING.md)
+          required: true
+        - label: I have searched existing issues to ensure this bug hasn't been reported
+          required: true
+        - label: I understand this is an educational project demonstrating cryptographic concepts
+          required: true
+
+  - type: dropdown
+    id: mode
+    attributes:
+      label: Mode
+      description: Which mode were you using when the bug occurred?
+      options:
+        - Online mode (with API)
+        - Offline mode (local only)
+        - Both modes
+        - Not applicable
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe what happened and what you expected to happen instead
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Please provide detailed steps to reproduce the issue
+      placeholder: |
+        1. Run command: `node luck-online.mjs`
+        2. Set parameters: ...
+        3. Observe error: ...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Information
+      description: Please provide your system information
+      placeholder: |
+        - OS: [e.g., Ubuntu 22.04, Windows 11, macOS 13]
+        - Node.js version: [run `node --version`]
+        - NPM version: [run `npm --version`]
+        - Package version: [check package.json]
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Error Logs
+      description: If applicable, add any error messages or logs
+      placeholder: Paste any relevant error messages or console output here
+      render: shell
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Screenshots, configuration files, or other relevant information
+
+  - type: checkboxes
+    id: impact
+    attributes:
+      label: Impact Assessment
+      description: How does this bug affect the educational experience?
+      options:
+        - label: Prevents understanding of cryptographic concepts
+        - label: Causes incorrect mathematical calculations
+        - label: Breaks key generation or validation
+        - label: Performance issues affecting learning
+        - label: Documentation or examples don't work

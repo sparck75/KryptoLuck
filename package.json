@@ -1,6 +1,33 @@
 {
   "name": "krypto-luck",
   "version": "1.0.0",
+  "description": "Educational cryptocurrency wallet generator demonstrating the mathematical impossibility of brute-force wallet discovery",
+  "main": "luck-online.mjs",
+  "type": "module",
+  "scripts": {
+    "start": "node luck-online.mjs",
+    "online": "node luck-online.mjs",
+    "offline": "node luck-offline.mjs"
+  },
+  "keywords": [
+    "cryptocurrency",
+    "ethereum",
+    "wallet",
+    "security",
+    "educational",
+    "blockchain",
+    "cryptography",
+    "brute-force"
+  ],
+  "author": "sparck75",
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sparck75/KryptoLuck.git"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "dotenv": "^16.0.3",
     "ethcall": "^4.8.13",

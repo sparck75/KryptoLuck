@@ -1,0 +1,147 @@
+name: ⚡ Performance Issue
+description: Report performance problems or suggest optimizations
+title: "[Performance]: "
+labels: ["performance", "optimization"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us optimize KryptoLuck's performance! While this is an educational project, good performance helps users better understand the concepts without frustration.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm you have completed the following steps
+      options:
+        - label: I have read the [README.md](../README.md) performance considerations section
+          required: true
+        - label: I have tested with different configurations to isolate the issue
+          required: true
+        - label: I understand this is primarily an educational tool, not a production system
+          required: true
+
+  - type: dropdown
+    id: performance_area
+    attributes:
+      label: Performance Area
+      description: Which aspect of performance is affected?
+      options:
+        - Key generation speed
+        - Address derivation performance
+        - Memory usage
+        - API response times (online mode)
+        - File I/O operations
+        - Mathematical calculations
+        - Overall application startup
+        - CPU utilization
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current Performance Issue
+      description: Describe the performance problem you're experiencing
+      placeholder: |
+        Be specific about what you're observing:
+        - How long operations take
+        - Resource usage (CPU, memory)
+        - When the slowdown occurs
+        - Impact on the educational experience
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected_performance
+    attributes:
+      label: Expected Performance
+      description: What performance would you expect for educational purposes?
+      placeholder: |
+        Describe reasonable performance expectations:
+        - Target speeds for learning effectiveness
+        - Acceptable resource usage
+        - Desired responsiveness for understanding concepts
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: System Environment
+      description: Provide detailed system information for performance analysis
+      placeholder: |
+        - OS: [e.g., Ubuntu 22.04, Windows 11, macOS 13]
+        - CPU: [processor model and cores]
+        - RAM: [available memory]
+        - Node.js version: [run `node --version`]
+        - Mode: [online/offline]
+        - Configuration: [batch sizes, thread count, etc.]
+      render: yaml
+    validations:
+      required: true
+
+  - type: textarea
+    id: measurements
+    attributes:
+      label: Performance Measurements
+      description: If you have specific measurements, please share them
+      placeholder: |
+        Example measurements:
+        - Keys generated per second: X
+        - Memory usage: X MB
+        - CPU usage: X%
+        - Time to generate 1000 keys: X seconds
+        - API calls per minute: X
+      render: shell
+
+  - type: textarea
+    id: profiling
+    attributes:
+      label: Profiling Information
+      description: Any profiling data or bottleneck identification
+      placeholder: |
+        If you've done any profiling:
+        - Which functions are slowest?
+        - Where is most time spent?
+        - Memory leak observations?
+        - Network bottlenecks?
+
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Educational Impact
+      description: How does this performance issue affect learning?
+      options:
+        - Critical - prevents effective learning
+        - High - significantly hampers understanding
+        - Medium - noticeable but manageable
+        - Low - minor inconvenience
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggestions
+    attributes:
+      label: Optimization Suggestions
+      description: Do you have ideas for performance improvements?
+      placeholder: |
+        Suggest potential optimizations:
+        - Algorithm improvements
+        - Better data structures
+        - Caching strategies
+        - Batch processing
+        - Parallel processing
+        - Memory management
+
+  - type: checkboxes
+    id: research
+    attributes:
+      label: Optimization Research
+      description: What have you researched or tried?
+      options:
+        - label: Tested different batch sizes or configurations
+        - label: Compared performance across different Node.js versions
+        - label: Researched cryptographic optimization techniques
+        - label: Analyzed similar educational tools for comparison
+        - label: Profiled the application to identify bottlenecks
+        - label: Tested on multiple systems for consistency

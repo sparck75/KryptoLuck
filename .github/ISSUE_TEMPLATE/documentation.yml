@@ -1,0 +1,143 @@
+name: 📚 Documentation Improvement
+description: Suggest improvements to documentation, examples, or educational content
+title: "[Docs]: "
+labels: ["documentation", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Help us improve the educational value of KryptoLuck's documentation! Whether it's fixing errors, adding examples, or clarifying concepts, your input is valuable.
+
+  - type: checkboxes
+    id: prerequisites
+    attributes:
+      label: Prerequisites
+      description: Please confirm you have completed the following steps
+      options:
+        - label: I have read the current documentation thoroughly
+          required: true
+        - label: I have searched existing issues for similar documentation requests
+          required: true
+        - label: I understand the educational purpose of this project
+          required: true
+
+  - type: dropdown
+    id: doc_type
+    attributes:
+      label: Documentation Type
+      description: What type of documentation needs improvement?
+      options:
+        - README.md
+        - CONTRIBUTING.md
+        - Code comments (JSDoc)
+        - Setup/installation instructions
+        - Usage examples
+        - Mathematical explanations
+        - FAQ section
+        - Troubleshooting guide
+        - Performance optimization tips
+        - Educational concepts explanation
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: issue_type
+    attributes:
+      label: Issue Type
+      description: What kind of documentation issue is this?
+      options:
+        - Missing information
+        - Incorrect or outdated information
+        - Unclear or confusing explanation
+        - Lack of examples
+        - Broken links or formatting
+        - Missing educational context
+        - Grammar or spelling errors
+        - Accessibility improvements
+        - Translation needed
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_problem
+    attributes:
+      label: Current Problem
+      description: What is currently wrong, missing, or unclear in the documentation?
+      placeholder: |
+        Describe the specific issue with the current documentation.
+        
+        Examples:
+        - The installation steps don't work on Windows
+        - The probability explanation is too technical for beginners
+        - Missing example of how to configure offline mode
+        - Code comments don't explain the mathematical concepts
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_solution
+    attributes:
+      label: Proposed Solution
+      description: How would you improve the documentation?
+      placeholder: |
+        Describe your suggested improvements in detail.
+        
+        Examples:
+        - Add step-by-step Windows installation guide with screenshots
+        - Simplify probability explanation with visual analogies
+        - Include example .env file with explanations
+        - Add mathematical formulas with plain English explanations
+    validations:
+      required: true
+
+  - type: textarea
+    id: target_audience
+    attributes:
+      label: Target Audience
+      description: Who would benefit from this documentation improvement?
+      placeholder: |
+        Specify the intended audience:
+        - Complete beginners to cryptography
+        - Students learning about blockchain
+        - Developers wanting to understand the code
+        - Educators using this as a teaching tool
+        - Contributors to the project
+
+  - type: checkboxes
+    id: educational_impact
+    attributes:
+      label: Educational Impact
+      description: How would this improvement enhance learning?
+      options:
+        - label: Makes complex concepts more accessible
+        - label: Provides better practical examples
+        - label: Clarifies mathematical foundations
+        - label: Improves setup and usage experience
+        - label: Adds visual aids or diagrams
+        - label: Connects theory to real-world applications
+        - label: Helps avoid common misconceptions
+
+  - type: textarea
+    id: additional_context
+    attributes:
+      label: Additional Context
+      description: Any other relevant information, examples, or references
+      placeholder: |
+        - Links to similar documentation that works well
+        - Screenshots highlighting the current problem
+        - References to educational resources
+        - Specific file locations or line numbers
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution Willingness
+      description: Are you willing to help implement this improvement?
+      options:
+        - label: I can write the improved documentation
+        - label: I can provide examples or code snippets
+        - label: I can review and test the improvements
+        - label: I can provide feedback on proposed changes
+        - label: I prefer to just report the issue for others to fix

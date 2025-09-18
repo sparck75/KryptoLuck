@@ -96,17 +96,6 @@ export class KryptoLuck {
 
     }
 
-    /**
-     * Updates the process title with current progress statistics
-     * 
-     * @async
-     * @param {number} round - Current round number
-     * @param {number} SIZE - Number of wallets per round
-     */
-    updateTitle = async function(round, SIZE){
-        process.title = `Krypto Luck is running | Wallets Generated: ${round * SIZE}`                
-    }
-
 }
 
 export default { KryptoLuck };

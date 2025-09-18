@@ -66,7 +66,7 @@ while(true){
             logger.info(`🎉 JACKPOT! We got lucky!!! ${address} : ${privateKey}`);            
         }    
     }
-    luck.updateTitle(round, ROUND_SIZE)
+    process.title = `Krypto Luck is running | Wallets Generated: ${round * ROUND_SIZE}`
     round++;
     await sleep(10) // Small delay to prevent excessive CPU usage
 }

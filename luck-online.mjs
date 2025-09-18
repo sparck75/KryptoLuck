@@ -54,6 +54,6 @@ let round = 1
 while(true){
     const list = create_account(ROUND_SIZE)   
     await luck.validateOnChain(list)    
-    luck.updateTitle(round, ROUND_SIZE)
+    process.title = `Krypto Luck is running | Wallets Generated: ${round * ROUND_SIZE}`
     round++;
 }

@@ -30,6 +30,16 @@ The Ethereum address space contains 2^160 possible addresses (approximately 1.46
 - **npm** (comes with Node.js)
 - **Infura Account** (for online mode) - Get free API key at [infura.io](https://infura.io/)
 
+### Optional: SQLite Storage
+
+For enhanced storage features with indexing and fast queries:
+
+```bash
+npm install better-sqlite3
+```
+
+**Note**: This requires Node.js 20+ or compatible build tools. The system works perfectly without it using compressed file storage.
+
 ## 🚀 Installation
 
 1. **Clone the repository**
@@ -140,13 +150,14 @@ KryptoLuck now includes an advanced storage system to save all generated wallet 
 
 ### Storage Options
 
-1. **SQLite Database** (Recommended for analysis)
+1. **SQLite Database** (Optional - requires additional installation)
    - Structured storage with indexing
    - Fast searches and queries
    - Built-in statistics and analytics
    - Cross-platform compatibility
+   - **Installation**: `npm install better-sqlite3` (requires Node.js 20+ or compatible build tools)
 
-2. **Compressed JSON Files**
+2. **Compressed JSON Files** (Default - no additional dependencies)
    - Lightweight gzip-compressed storage
    - Good for archival and backup
    - Platform-independent format

@@ -23,8 +23,16 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { logger } from './utils/logger.mjs';
 import { getStorageConfig, createStorageInstance } from './utils/storage-config.mjs';
-import { SQLiteWalletStorage } from './utils/sqlite-storage.mjs';
 import { CompressedStorage, StreamStorage } from './utils/storage.mjs';
+
+// Try to import SQLite storage, but handle gracefully if not available
+let SQLiteWalletStorage = null;
+try {
+    const sqliteModule = await import('./utils/sqlite-storage.mjs');
+    SQLiteWalletStorage = sqliteModule.SQLiteWalletStorage;
+} catch (error) {
+    // SQLite not available, will fallback to other storage types
+}
 
 class WalletAnalyzer {
     constructor() {
@@ -47,7 +55,7 @@ class WalletAnalyzer {
         console.log('\n📊 KryptoLuck Storage Statistics');
         console.log('================================\n');
 
-        if (this.storage instanceof SQLiteWalletStorage) {
+        if (SQLiteWalletStorage && this.storage instanceof SQLiteWalletStorage) {
             const stats = this.storage.getGenerationStats();
             const dbInfo = this.storage.getDatabaseInfo();
 
@@ -99,7 +107,7 @@ class WalletAnalyzer {
 
         console.log(`\n📤 Exporting wallet data to ${filename}...`);
 
-        if (this.storage instanceof SQLiteWalletStorage) {
+        if (SQLiteWalletStorage && this.storage instanceof SQLiteWalletStorage) {
             const count = await this.storage.exportToJSON(filename, {
                 limit,
                 onlyWithBalance,
@@ -147,7 +155,7 @@ class WalletAnalyzer {
     async searchWallets(criteria = {}) {
         console.log('\n🔍 Searching wallets...\n');
 
-        if (this.storage instanceof SQLiteWalletStorage) {
+        if (SQLiteWalletStorage && this.storage instanceof SQLiteWalletStorage) {
             const results = this.storage.searchWallets(criteria);
             
             console.log(`Found ${results.length} wallets matching criteria:`);
@@ -176,7 +184,7 @@ class WalletAnalyzer {
     async showJackpots() {
         console.log('\n🎰 Jackpot Wallets (with balance)\n');
 
-        if (this.storage instanceof SQLiteWalletStorage) {
+        if (SQLiteWalletStorage && this.storage instanceof SQLiteWalletStorage) {
             const jackpots = this.storage.getWalletsWithBalance(100);
             
             if (jackpots.length === 0) {
@@ -207,7 +215,7 @@ class WalletAnalyzer {
     async analyzeData() {
         console.log('\n📈 Data Analysis\n');
 
-        if (this.storage instanceof SQLiteWalletStorage) {
+        if (SQLiteWalletStorage && this.storage instanceof SQLiteWalletStorage) {
             // Generation rate analysis
             const db = this.storage.db;
             
@@ -278,7 +286,7 @@ class WalletAnalyzer {
     async optimizeStorage() {
         console.log('\n🔧 Optimizing storage...\n');
 
-        if (this.storage instanceof SQLiteWalletStorage) {
+        if (SQLiteWalletStorage && this.storage instanceof SQLiteWalletStorage) {
             const beforeInfo = this.storage.getDatabaseInfo();
             console.log(`Database size before optimization: ${beforeInfo.sizeMB} MB`);
             

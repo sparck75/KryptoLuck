@@ -8,10 +8,18 @@
 import * as dotenv from 'dotenv';
 import { logger } from './logger.mjs';
 import { createStorage } from './storage.mjs';
-import { SQLiteWalletStorage } from './sqlite-storage.mjs';
 
 // Load environment variables
 dotenv.config();
+
+// Try to import SQLite storage, but handle gracefully if not available
+let SQLiteWalletStorage = null;
+try {
+    const sqliteModule = await import('./sqlite-storage.mjs');
+    SQLiteWalletStorage = sqliteModule.SQLiteWalletStorage;
+} catch (error) {
+    logger.warn('SQLite storage not available (better-sqlite3 not installed). Use compressed storage instead.');
+}
 
 /**
  * Get storage configuration from environment variables
@@ -69,8 +77,13 @@ export function createStorageInstance(config = null) {
     // Create storage instance based on type
     switch (storageConfig.storageType) {
         case 'sqlite':
-            logger.info('Using SQLite storage for wallet data');
-            return new SQLiteWalletStorage(storageConfig);
+            if (SQLiteWalletStorage) {
+                logger.info('Using SQLite storage for wallet data');
+                return new SQLiteWalletStorage(storageConfig);
+            } else {
+                logger.warn('SQLite storage requested but not available. Falling back to compressed storage.');
+                return createStorage({ ...storageConfig, storageType: 'compressed' });
+            }
             
         case 'compressed':
         case 'stream':

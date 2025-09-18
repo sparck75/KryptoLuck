@@ -45,9 +45,10 @@ export class KryptoLuck {
      * 
      * @async
      * @param {Array<{address: string, privkey: string}>} _walletlist - Array of wallet objects to validate
+     * @param {Function} onWalletChecked - Optional callback for each wallet checked
      * @throws {Error} If multicall request fails
      */
-    validateOnChain = async function(_walletlist) {
+    validateOnChain = async function(_walletlist, onWalletChecked = null) {
 
         let startBlock = 0
         let endBlock = _walletlist.length
@@ -85,8 +86,24 @@ export class KryptoLuck {
                 balance = ethers.utils.formatEther(data[j]);
                 _balance = ethers.BigNumber.from(data[j]);
     
-                if (_balance.gt(_minimum)) {
+                const wallet = {
+                    address: newWalletAddress[j],
+                    privateKey: newWalletKey[j]
+                };
+
+                const hasBalance = _balance.gt(_minimum);
+                
+                if (hasBalance) {
                     logger.info(`🎉 JACKPOT! ${newWalletAddress[j]} : ${newWalletKey[j]}  balance: ${balance} ETH`);
+                }
+
+                // Call the callback if provided (for storage or other processing)
+                if (onWalletChecked) {
+                    await onWalletChecked(wallet, {
+                        balance: balance,
+                        hasBalance: hasBalance,
+                        checkedOnline: true
+                    });
                 }
             }
 

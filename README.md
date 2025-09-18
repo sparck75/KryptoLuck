@@ -45,7 +45,11 @@ The Ethereum address space contains 2^160 possible addresses (approximately 1.46
 
 3. **Set up environment variables** (for online mode)
    ```bash
+   # Linux/macOS
    cp .example_env .env
+   
+   # Windows
+   copy .example_env .env
    ```
    
    Edit `.env` and add your Infura API key:
@@ -55,6 +59,52 @@ The Ethereum address space contains 2^160 possible addresses (approximately 1.46
    ```
 
 ## 🎮 Usage
+
+### Quick Start (Cross-Platform)
+
+**Option 1: Using npm scripts (recommended)**
+```bash
+# Start with platform detection and guidance
+npm start
+
+# Run offline mode (no internet required)
+npm run offline
+
+# Run online mode (requires Infura API key)
+npm run online
+
+# Debug mode with verbose logging
+LOG_LEVEL=debug npm run offline
+```
+
+**Option 2: Using platform-specific scripts**
+
+*Linux/macOS:*
+```bash
+# Make script executable (first time only)
+chmod +x run.sh
+
+# Run offline mode
+./run.sh offline
+
+# Run online mode
+./run.sh online
+
+# Run with debug logging
+./run.sh debug
+```
+
+*Windows:*
+```batch
+# Run offline mode
+run.bat offline
+
+# Run online mode
+run.bat online
+
+# Run with debug logging
+run.bat debug
+```
 
 ### Online Mode (Blockchain Queries)
 
@@ -84,6 +134,84 @@ node luck-offline.mjs
 - Faster execution (no network delays)
 - Purely statistical demonstration
 
+## 💾 Wallet Storage System
+
+KryptoLuck now includes an advanced storage system to save all generated wallet data for later analysis:
+
+### Storage Options
+
+1. **SQLite Database** (Recommended for analysis)
+   - Structured storage with indexing
+   - Fast searches and queries
+   - Built-in statistics and analytics
+   - Cross-platform compatibility
+
+2. **Compressed JSON Files**
+   - Lightweight gzip-compressed storage
+   - Good for archival and backup
+   - Platform-independent format
+   - Batch-based file organization
+
+3. **Stream Files**
+   - High-performance append-only format
+   - Minimal memory usage
+   - JSON Lines format for easy processing
+   - Best for continuous generation
+
+### Storage Configuration
+
+Add these variables to your `.env` file:
+
+```env
+# Storage type: 'sqlite', 'compressed', 'stream', 'none'
+STORAGE_TYPE=compressed
+
+# Directory for storing wallet data
+DATA_DIR=./data
+
+# Number of wallets to batch before writing
+BATCH_SIZE=1000
+
+# Enable compression for file-based storage
+ENABLE_COMPRESSION=true
+
+# Enable/disable storage completely
+ENABLE_STORAGE=true
+```
+
+### Analyzing Stored Data
+
+Use the wallet analysis tools to explore your data:
+
+```bash
+# Show storage statistics
+npm run stats
+
+# Export wallets to JSON
+npm run export
+
+# Show any jackpot wallets (with balance)
+npm run jackpots
+
+# Advanced analysis and search
+npm run tools help
+```
+
+**Example Analysis Commands:**
+```bash
+# Export only wallets with balance
+node wallet-tools.mjs export jackpots.json --balance-only
+
+# Search offline-generated wallets
+node wallet-tools.mjs search --mode offline --limit 1000
+
+# Clean up old data files
+node wallet-tools.mjs cleanup 30
+
+# Optimize SQLite database
+node wallet-tools.mjs optimize
+```
+
 ## 📁 Project Structure
 
 ```
@@ -94,9 +222,21 @@ KryptoLuck/
 │   └── create_account.mjs  # Wallet generation utilities
 ├── utils/
 │   ├── logger.mjs          # Winston-based logging
-│   └── sleep.mjs           # Sleep utility function
+│   ├── sleep.mjs           # Sleep utility function
+│   ├── title.mjs           # Cross-platform process title updates
+│   ├── storage.mjs         # File-based storage utilities
+│   ├── sqlite-storage.mjs  # SQLite database storage
+│   └── storage-config.mjs  # Storage configuration management
+├── data/                   # Storage directory (created automatically)
+│   ├── wallets.db          # SQLite database (if using SQLite storage)
+│   ├── wallets_*.json.gz   # Compressed wallet files
+│   └── wallets_stream.jsonl # Stream file for continuous writes
 ├── luck-online.mjs         # Main script for online mode
 ├── luck-offline.mjs        # Main script for offline mode
+├── wallet-tools.mjs        # Wallet data analysis and export tools
+├── start.mjs               # Cross-platform startup script
+├── run.sh                  # Linux/macOS helper script
+├── run.bat                 # Windows helper script
 ├── RichEtherAddress.json   # List of wealthy Ethereum addresses
 ├── .example_env            # Environment variables template
 └── README.md               # This file
@@ -106,11 +246,16 @@ KryptoLuck/
 
 ### Environment Variables
 
-| Variable    | Description                | Required | Default |
-|-------------|----------------------------|----------|---------|
-| `INFURA_KEY`| Your Infura API key       | Yes      | None    |
-| `RPC`       | Ethereum RPC endpoint      | Yes      | `https://mainnet.infura.io/v3/` |
-| `LOG_LEVEL` | Logging level             | No       | `info`  |
+| Variable           | Description                | Required | Default       |
+|-------------------|----------------------------|----------|---------------|
+| `INFURA_KEY`      | Your Infura API key       | Online   | None          |
+| `RPC`             | Ethereum RPC endpoint      | Online   | `https://mainnet.infura.io/v3/` |
+| `LOG_LEVEL`       | Logging level             | No       | `info`        |
+| `STORAGE_TYPE`    | Storage backend type      | No       | `compressed`  |
+| `DATA_DIR`        | Data storage directory    | No       | `./data`      |
+| `BATCH_SIZE`      | Wallets per batch         | No       | `1000`        |
+| `ENABLE_COMPRESSION` | Enable file compression | No       | `true`        |
+| `ENABLE_STORAGE`  | Enable wallet storage     | No       | `true`        |
 
 ### Logging Levels
 

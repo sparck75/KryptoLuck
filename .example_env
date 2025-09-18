@@ -1,3 +1,19 @@
 ### INFURA 
 INFURA_KEY=xxxxxxxxxxxxxxxxxxxxxxxxxxx
 RPC=https://mainnet.infura.io/v3/
+
+### STORAGE CONFIGURATION
+# Storage type: 'sqlite', 'compressed', 'stream', 'none'
+STORAGE_TYPE=compressed
+# Directory for storing wallet data
+DATA_DIR=./data
+# Number of wallets to batch before writing to storage
+BATCH_SIZE=1000
+# Enable compression for file-based storage
+ENABLE_COMPRESSION=true
+# Enable wallet storage (set to false to disable storage completely)
+ENABLE_STORAGE=true
+
+### LOGGING
+# Log level: error, warn, info, verbose, debug
+LOG_LEVEL=info

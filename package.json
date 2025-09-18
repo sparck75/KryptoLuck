@@ -5,9 +5,13 @@
   "main": "luck-online.mjs",
   "type": "module",
   "scripts": {
-    "start": "node luck-online.mjs",
+    "start": "node start.mjs",
     "online": "node luck-online.mjs",
-    "offline": "node luck-offline.mjs"
+    "offline": "node luck-offline.mjs",
+    "tools": "node wallet-tools.mjs",
+    "stats": "node wallet-tools.mjs stats",
+    "export": "node wallet-tools.mjs export",
+    "jackpots": "node wallet-tools.mjs jackpots"
   },
   "keywords": [
     "cryptocurrency",
@@ -29,6 +33,7 @@
     "node": ">=14.0.0"
   },
   "dependencies": {
+    "better-sqlite3": "^12.2.0",
     "dotenv": "^16.0.3",
     "ethcall": "^4.8.13",
     "ethers": "^5.7.2",

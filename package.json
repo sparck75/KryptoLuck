@@ -30,10 +30,9 @@
     "url": "https://github.com/sparck75/KryptoLuck.git"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
   "dependencies": {
-    "better-sqlite3": "^12.2.0",
     "dotenv": "^16.0.3",
     "ethcall": "^4.8.13",
     "ethers": "^5.7.2",
